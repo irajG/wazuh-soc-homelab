@@ -1,0 +1,236 @@
+SOC Home Lab Workflow Architecture
+
+Overview
+
+This SOC Home Lab demonstrates a modern Blue Team and Security Operations Center (SOC) environment using enterprise-grade open-source security tools.
+
+The lab focuses on:
+
+- Network security monitoring
+- Threat detection and response
+- SIEM log analysis
+- Threat intelligence sharing
+- Security automation
+- Alerting and incident response
+- DNS filtering and network segmentation
+
+
+High-Level SOC Home Lab Workflow
+
+Flowchart 
+    
+Internet[Internet]
+        |
+ONT [ ONT / ISP Modem]
+        |
+PFsense [ Qotom pfSense Firewall + Suricata IDS/IPS + pfBlockerNG ]
+        |
+AP [ TP-Link Archer C55  Access Point ]
+        |
+Lenovo ThinkCentre [ Linux Server - Wazuh SIEM + Pi-hole DNS ]
+        |
+iMac SOC Workstation [ TheHive + Cortex + n8n Automation + Telegram Alerting]
+        |
+Desktop [ Threat Intelligence Server - MISP + AI Analysis ]
+        |
+Devices [ WiFi Devices = iPhone \ iPad \ Laptop \ TVs \ IoT Devices ]
+
+
+SOC Workflow Explanation
+
+1. Internet Edge Protection
+
+Qotom pfSense Firewall : The Qotom appliance acts as the main perimeter firewall.
+
+Services Running:
+- pfSense Firewall
+- Suricata IDS/IPS
+- pfBlockerNG
+- Darkstat
+
+Responsibilities:
+
+- Stateful firewall filtering
+- Intrusion detection and prevention
+- GeoIP filtering
+- DNS/IP reputation blocking
+- Traffic inspection
+- Network segmentation
+- Threat detection
+
+
+2. Wireless Network Layer
+
+TP-Link Archer C55 Access Point
+
+The Archer C55 provides wireless connectivity for all home and lab devices.
+
+Connected Devices:
+- iPhone
+- iPad
+- Laptops
+- Smart TVs
+- IoT devices
+
+Workflow:
+
+All device traffic passes through:
+
+WiFi Device -> Access Point -> pfSense Firewall -> Internet
+
+This ensures all traffic is inspected by Suricata and filtered by pfBlockerNG.
+
+3. SIEM and DNS Security Layer
+
+Lenovo ThinkCentre Linux Server
+
+Services:
+- Wazuh SIEM
+- Wazuh Dashboard
+- Filebeat
+- OpenSearch
+- Pi-hole DNS Sinkhole
+
+Responsibilities:
+- Wazuh SIEM
+- Collects logs from firewall and endpoints
+- Detects brute-force attacks
+- Detects suspicious activity
+- Correlates events
+- Generates alerts
+- Visualizes security events
+- Pi-hole
+- Blocks ads and malicious domains
+- DNS sinkholing
+- DNS visibility
+- Reduces telemetry and trackers
+
+Log Flow:
+
+pfSense/Suricata Logs -> Wazuh SIEM
+Devices/System Logs -> Wazuh SIEM
+Pi-hole DNS Logs -> Wazuh SIEM
+
+4. SOC Automation and Incident Response
+
+iMac SOC Workstation
+
+Services:
+- TheHive
+- Cortex
+- n8n Automation
+- Telegram Alerting
+
+Workflow:
+1. TheHive
+
+Used for:
+
+- Incident management
+- Case tracking
+- SOC investigations
+- Analyst collaboration
+- Evidence collection
+
+2. Cortex
+
+Used for:
+
+- IOC enrichment
+- Automated analyzers
+- VirusTotal checks
+- Threat intelligence lookups
+- Automated response actions
+
+3. n8n Automation
+
+Used for:
+
+- Alert automation
+- Wazuh webhook processing
+- Telegram integration
+- Automated workflows
+- Security orchestration
+
+Example Alert Workflow:
+
+Wazuh Alert -> n8n Webhook -> Telegram Notification
+
+Example Use Cases:
+- SSH brute-force alerts
+- Malware detection alerts
+- Critical Suricata alerts
+- Firewall deny events
+- Endpoint compromise indicators
+
+5. Threat Intelligence Layer
+
+Desktop Threat Intelligence Server
+
+Services:
+- MISP
+- AI-assisted analysis tools
+
+Responsibilities:
+
+MISP
+- IOC sharing
+- Threat intelligence feeds
+- Malware indicators
+- Community threat sharing
+- Threat actor tracking
+
+AI Analysis
+- Log summarization
+- Threat classification
+- IOC analysis
+- Detection rule generation
+- SOC investigation assistance
+
+Threat Intel Workflow:
+Threat Feeds -> MISP -> Wazuh/TheHive/Cortex
+
+End-to-End Detection Workflow
+
+sequenceDiagram
+    participant Device as WiFi Device
+    participant PF as pfSense + Suricata
+    participant WZ as Wazuh SIEM
+    participant N8N as n8n Automation
+    participant TG as Telegram
+    participant TH as TheHive
+    participant CX as Cortex
+    participant MISP as MISP
+
+
+Skills Demonstrated
+
+This SOC Home Lab demonstrates:
+
+- Security Engineering
+- Firewall deployment
+- IDS/IPS configuration
+- DNS security
+- SIEM implementation
+- Threat intelligence integration
+- SOC Operations
+- Log analysis
+- Incident detection
+- Alert triage
+- Threat hunting
+- Case management
+- Automation
+- Webhook integration
+- Alert automation
+- Telegram notifications
+- Workflow orchestration
+- Threat Intelligence
+- IOC management
+- MISP integration
+- Threat enrichment
+- Intelligence sharing
+- Linux Administration
+- Ubuntu/Linux server management
+- Service troubleshooting
+- Log management
+- Network configuration
