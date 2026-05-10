@@ -1,0 +1,95 @@
+Examples
+
+1. SSH Brute Force Detection
+Triggers after multiple failed SSH logins.
+
+<group name="custom_ssh,authentication_failures,">
+  <rule id="100100" level="12">
+    <if_sid>5710</if_sid>
+    <frequency>5</frequency>
+    <timeframe>60</timeframe>
+    <description>Possible SSH brute force attack detected</description>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+  </rule>
+</group>
+
+
+2. Invalid SSH User Detection
+
+<group name="custom_ssh,authentication_failures,">
+  <rule id="100101" level="10">
+    <match>Invalid user</match>
+    <description>Invalid SSH user login attempt</description>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+  </rule>
+</group>
+
+
+3. Successful Root SSH Login Alert
+High severity if root logs in.
+
+<group name="custom_ssh,authentication_success,">
+  <rule id="100102" level="13">
+    <match>Accepted password for root</match>
+    <description>Root SSH login successful</description>
+    <mitre>
+      <id>T1078</id>
+    </mitre>
+  </rule>
+</group>
+
+
+4. Suspicious sudo Usage
+Detects privilege escalation attempts.
+
+<group name="custom_sudo,privilege_escalation,">
+  <rule id="100103" level="10">
+    <match>sudo:</match>
+    <description>Sudo command executed</description>
+    <mitre>
+      <id>T1548</id>
+    </mitre>
+  </rule>
+</group>
+
+
+5. Port Scan Detection
+Detects common Nmap scans from firewall/syslog.
+
+<group name="custom_network,reconnaissance,">
+  <rule id="100104" level="11">
+    <match>Nmap scan</match>
+    <description>Possible port scanning activity detected</description>
+    <mitre>
+      <id>T1046</id>
+    </mitre>
+  </rule>
+</group>
+
+
+6. Multiple Authentication Failures
+
+<group name="custom_auth,authentication_failures,">
+  <rule id="100105" level="12">
+    <if_sid>5710</if_sid>
+    <frequency>10</frequency>
+    <timeframe>120</timeframe>
+    <description>Multiple authentication failures detected</description>
+    <mitre>
+      <id>T1110</id>
+    </mitre>
+  </rule>
+</group>
+
+
+9. Test the Rules
+
+Generate SSH failures:
+
+ssh fakeuser@YOUR_SERVER_IP
+
+
