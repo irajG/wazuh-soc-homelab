@@ -1,0 +1,9 @@
+  Detection Capabilities
+
+- SSH brute-force detection
+- Failed login monitoring
+- File Integrity Monitoring (FIM)
+- Malware test detection (EICAR)
+- Sysmon event monitoring
+- Privilege escalation alerts
+- PowerShell execution monitoring
