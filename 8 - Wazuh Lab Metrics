@@ -1,0 +1,5 @@
+- Built and managed a Wazuh-based SOC home lab
+- Collected and analyzed endpoint security logs
+- Automated alerting using n8n and Telegram
+- Simulated and detected brute-force attacks
+- Developed custom SIEM detection rules
