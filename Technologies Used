@@ -1,0 +1,8 @@
+| Tool                                                                                             | Purpose           |
+| ------------------------------------------------------------------------------------------------ | ----------------- |
+| Wazuh (https://wazuh.com)                                                                        | SIEM/XDR          |
+| OpenSearch (https://opensearch.org)                                                              | Log indexing      |
+| n8n (https://n8n.io)                                                                             | Alert automation  |
+| Docker (https://www.docker.com)                                                                  | Containerization  |
+| Ubuntu Server (https://ubuntu.com)                                                               | SOC server OS     |
+| Pfsense (https://www.pfsense.org/)                                                               | Network Firewall  |
