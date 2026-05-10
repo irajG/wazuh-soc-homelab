@@ -1,0 +1,14 @@
+SSH Brute Force Simulation 
+
+- Objective
+  Simulate failed SSH logins to trigger Wazuh alerts.
+
+Commands Used
+
+ssh admin@192.168.1.142
+hydra -l root -P passwords.txt ssh://192.168.1.142
+
+Result
+- Wazuh generated level 10 alert
+- n8n webhook triggered
+- Telegram notification received
