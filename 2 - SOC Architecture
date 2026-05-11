@@ -31,7 +31,7 @@ Lenovo ThinkCentre [ Linux Server - Wazuh SIEM + Pi-hole DNS ]
         |
 iMac SOC Workstation [ TheHive + Cortex + n8n Automation + Telegram Alerting]
         |
-Desktop [ Threat Intelligence Server - MISP + AI Analysis ]
+Desktop [ Threat Intelligence Server - MISP + AI Analysis + Sysmon ]
         |
 Devices [ WiFi Devices = iPhone \ iPad \ Laptop \ TVs \ IoT Devices ]
 
