@@ -1,0 +1,11 @@
+SOC Home Lab Upgrade: ntopng Traffic Visibility Layer (Docker + pfSense Integration)
+As part of my home SOC lab expansion, I deployed ntopng in a Docker container on a Lenovo ThinkCentre Linux server to enhance real-time network visibility across the environment.
+The setup is integrated with my existing pfSense firewall, where traffic flows (NetFlow/sFlow/UDP) are forwarded from pfSense to ntopng via the eth0 interface. This enables deep packet flow analysis, host identification, and application-level traffic monitoring across all network segments.
+Key Improvements
+- Real-time network flow monitoring and visualisation
+- Enhanced detection of unusual traffic patterns and lateral movement
+- Improved visibility of LAN/WiFi/IoT device behavior
+- Containerised deployment using Docker for easy scaling and isolation
+- Direct integration with pfSense for centralised traffic export
+
+This upgrade significantly strengthens the SOC lab’s network observability layer, complementing existing tools like Wazuh SIEM, TheHive, Cortex, MISP, and Suricata IDS/IPS.
