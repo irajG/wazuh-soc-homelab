@@ -1,0 +1,86 @@
+SOC Detection Pack Home Lab  
+
+This is structured like a real blue team detection set:
+
+Endpoint (Sysmon)
+Identity (logons / brute force)
+Execution (PowerShell / LOLBins)
+Persistence
+Defense evasion
+Malware signals (Defender)
+
+- PowerShell Attack Detection (High Value)
+
+<rule id="100100" level="12">
+  <if_group>windows,sysmon</if_group>
+  <field name="win.eventdata.image">powershell.exe</field>
+  <description>Suspicious PowerShell execution detected</description>
+</rule>
+
+- LOLBins Detection (Living off the Land)
+
+<rule id="100200" level="10">
+  <if_group>windows,sysmon</if_group>
+  <field name="win.eventdata.image">certutil.exe</field>
+  <description>Suspicious use of certutil (possible download/exfil tool)</description>
+</rule>
+
+- Process Injection / Suspicious Parent-Child
+
+<rule id="100300" level="12">
+  <if_group>windows,sysmon</if_group>
+  <field name="win.eventdata.parentImage">winword.exe</field>
+  <field name="win.eventdata.image">powershell.exe</field>
+  <description>Office spawning PowerShell (possible macro attack)</description>
+</rule>
+
+- RDP Brute Force Detection
+
+<rule id="100400" level="10">
+  <if_sid>60122</if_sid>
+  <match>4625</match>
+  <description>Multiple failed login attempts (possible brute force)</description>
+</rule>
+
+- Sysmon File Creation (Persistence Detection)
+
+<rule id="100500" level="12">
+  <if_group>windows,sysmon</if_group>
+  <field name="win.eventdata.targetFilename">*\\Startup\\*</field>
+  <description>File created in Startup folder (persistence attempt)</description>
+</rule>
+
+- DLL Hijacking / Injection (You already saw this)
+
+<rule id="100600" level="13">
+  <if_group>windows,sysmon_eid11_detections</if_group>
+  <description>Possible DLL hijacking / side-loading activity</description>
+</rule>
+
+- Suspicious Network Activity (Sysmon EID 3)
+
+<rule id="100700" level="10">
+  <if_group>windows,sysmon</if_group>
+  <field name="win.eventdata.destinationIp">!192.168.*</field>
+  <description>Outbound connection to external IP (possible beaconing)</description>
+</rule>
+
+- Privilege Escalation Signals
+
+<rule id="100800" level="12">
+  <if_group>windows,sysmon</if_group>
+  <field name="win.eventdata.user">NT AUTHORITY\\SYSTEM</field>
+  <description>System-level process execution (monitor for escalation)</description>
+</rule>
+
+
+SOC Dashboard Queries
+- High severity events
+  rule.level >= 10
+
+- Sysmon attack surface
+  rule.groups:sysmon AND rule.level >= 6
+
+- Windows attack behavior
+  rule.groups:windows AND rule.level >= 8
+
