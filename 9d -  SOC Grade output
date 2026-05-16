@@ -1,0 +1,21 @@
+After adding these rule set and all the pipeline are flowing correctly
+
+My Homelab detects: 
+
+- Attack behavior
+  a. PowerShell attacks
+  b. Encoded commands
+  c. LOLBins
+  d. DLL injection
+  e. Persistence
+
+- Network behavior
+  a. External connections 
+  b. Possible beaconing
+
+- Endpoint security
+  a. Defender events
+  b. Windows execution logs
+
+- Noise control
+  a. Dashboard traffic filtered
