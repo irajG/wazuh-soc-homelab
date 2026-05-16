@@ -1,0 +1,28 @@
+Example Wazuh Alert!! when search on Wazuh 
+
+Search on wazuh: agent.name:"AgentName" AND data.win.system.providerName:"Microsoft-Windows-Windows Defender"
+
+"level": 3, "pci_dss": [ "5.1", "10.6.1", "5.2" ], "tsc": [ "A1.2", "CC7.2", "CC7.3" ], 
+"description": "Windows Defender: Antimalware engine used Dynamic Signature Service to get additional definitions", "nist_800_53": [ "SI.3", "AU.6" ],
+
+Source
+Provider: Microsoft Defender Antivirus
+Channel: Microsoft-Windows-Windows Defender/Operational
+Rule: windows_defender
+Wazuh group: windows_defender
+
+Wazuh rule:
+
+Level: 3 (low severity)
+Category: windows_defender
+Purpose: visibility, not alerting
+
+This is informational telemetry, not an incident.
+
+This event confirms ALL of the following:
+
+- Windows Defender logs are being collected
+- EventChannel integration works
+- Wazuh agent is forwarding correctly
+- Indexing into Wazuh is working
+- Dashboard search is working
